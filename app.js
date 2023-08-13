@@ -1,10 +1,10 @@
 // importing required packages
 const express = require('express');
 const bodyParser = require('body-parser');
-const connectDB = require('./config/mongoose');
+const db = require('./config/mongoose');
 const dotenv = require('dotenv').config();
 const PORT = process.env.PORT || 5000
-connectDB()
+
 
 // initializing express
 const app = express();

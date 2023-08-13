@@ -1,13 +1,16 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const connectDB = async () =>{
-    try {
-       const conn = await mongoose.connect(process.env.MONGO_URI) 
-       console.log(`connectDB: ${conn.connection.host}`)
-    } catch (error) {
-        console.log(error)
-         process.exit(1)
-    }
-}
+// connecting mongoose to its default server and ecommerceDB
+mongoose.connect('mongodb+srv://ansaripaniyara007:commerce@cluster0.tesqrbt.mongodb.net/eCommerceApi?retryWrites=true&w=majority', {
+    useNewUrlParser: true
+});
 
-module.exports = connectDB
+const db = mongoose.connection;
+
+db.on('error', console.error.bind(console, "Error connecting to MongoDB"));
+
+db.once('open', function(){
+    console.log('Connected to Database :: MongoDB');
+});
+
+module.exports = db;
